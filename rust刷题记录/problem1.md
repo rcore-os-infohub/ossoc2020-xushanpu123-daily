@@ -15,7 +15,7 @@
                let input:Vec<&str>=Line.trim().split(' ').collect();
                let n = input[0].parse::<i32>().unwrap();
                let k1=input[1].parse::<i32>().unwrap();
-               let k2=input[1].parse::<i32>().unwrap();
+               let k2=input[2].parse::<i32>().unwrap();
            
                let mut line=String::new();
                std::io::stdin().read_line(&mut line);
