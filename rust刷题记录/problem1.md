@@ -49,8 +49,10 @@
    }
    ```
 
-   题目来源：codeforces：Goodbye2019 A题，下面是C++代码：
+   题目来源：https://codeforces.com/contest/1270/problem/A
 
+   下面是C++代码：
+   
    1. ```c++
       #include <iostream>
       #include <cstdio>
@@ -79,7 +81,7 @@
            else      cout<<"NO"<<endl;
           }
           return 0;
-      }
+   }
       ```
-
+   
       
