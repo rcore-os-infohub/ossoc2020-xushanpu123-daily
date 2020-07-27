@@ -42,7 +42,6 @@ impl Thread {
         // 将 Context 放至内核栈顶
         unsafe { KERNEL_STACK.push_context(parked_frame) }
     }
-
     /// 发生时钟中断后暂停线程，保存状态
     pub fn park(&self, context: Context) {
         // 检查目前线程内的 context 应当为 None
@@ -86,29 +85,29 @@ impl Thread {
 
         Ok(thread)
     }
-
     pub fn inner(&self) -> spin::MutexGuard<ThreadInner> {
         self.inner.lock()
     }
-
-    pub fn fork(&self, context: &Context) -> MemoryResult<Arc<Thread>> {
-        let stack = self.process
-            .write()
-            .alloc_page_range(STACK_SIZE, Flags::READABLE | Flags::WRITABLE)?;
+     pub fn fork(&self, context: &Context) -> MemoryResult<Arc<Thread>> {
+        //读取旧线程的栈
+        let new_stack = self.process.write().alloc_page_range(STACK_SIZE, Flags::READABLE | Flags::WRITABLE)?;
+        //重新映射
         for p in 0..STACK_SIZE {
-            *VirtualAddress(stack.start.0 + p).deref::<u8>()
+            *VirtualAddress(new_stack.start.0 + p).deref::<u8>()
                 = *VirtualAddress(self.stack.start.0 + p).deref::<u8>();
         }
+        //拷贝上下文给新线程使用
         let mut new_context = context.clone();
-        // new_context.set_sp(stack.end.into());    // FIXIT
-        let sp = context.sp() - self.stack.start.0 + stack.start.0;
-        new_context.set_sp(sp);
+        //为新线程的栈开辟与原栈相同的空间，设置新的sp指针
+        let new_sp = context.sp() - self.stack.start.0 + stack.start.0;
+        new_context.set_sp(new_sp);
+        //返回新建线程的信息
         Ok(Arc::new(Thread {
             id: unsafe {
                 THREAD_COUNTER += 1;
                 THREAD_COUNTER
             },
-            stack,
+            new_stack,
             process: self.process.clone(),
             inner: Mutex::new(ThreadInner {
                 context: Some(new_context),
@@ -117,7 +116,6 @@ impl Thread {
         }))
     }
 }
-
 /// 通过线程 ID 来判等
 impl PartialEq for Thread {
     fn eq(&self, other: &Self) -> bool {

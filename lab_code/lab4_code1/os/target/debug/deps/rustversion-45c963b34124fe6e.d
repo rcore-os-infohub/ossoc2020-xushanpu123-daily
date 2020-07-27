@@ -1,0 +1,14 @@
+/mnt/e/myrcore/lab_code/lab4_code1/os/target/debug/deps/librustversion-45c963b34124fe6e.so: /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/lib.rs /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/attr.rs /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/bound.rs /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/date.rs /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/expr.rs /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/time.rs /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/version.rs /mnt/e/myrcore/lab_code/lab4_code1/os/target/debug/build/rustversion-d277267f60a12c7e/out/version.rs
+
+/mnt/e/myrcore/lab_code/lab4_code1/os/target/debug/deps/rustversion-45c963b34124fe6e.d: /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/lib.rs /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/attr.rs /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/bound.rs /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/date.rs /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/expr.rs /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/time.rs /home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/version.rs /mnt/e/myrcore/lab_code/lab4_code1/os/target/debug/build/rustversion-d277267f60a12c7e/out/version.rs
+
+/home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/lib.rs:
+/home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/attr.rs:
+/home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/bound.rs:
+/home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/date.rs:
+/home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/expr.rs:
+/home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/time.rs:
+/home/xushanpu123/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/rustversion-1.0.3/src/version.rs:
+/mnt/e/myrcore/lab_code/lab4_code1/os/target/debug/build/rustversion-d277267f60a12c7e/out/version.rs:
+
+# env-dep:OUT_DIR=/mnt/e/myrcore/lab_code/lab4_code1/os/target/debug/build/rustversion-d277267f60a12c7e/out
