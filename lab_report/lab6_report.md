@@ -37,3 +37,5 @@ pub(super) fn sys_gettid() -> SyscallResult {
 #### 实验：实现进程复制sys_fork()
 
 #### 实验：将一个文件打包进用户镜像，并让一个用户进程读取它并打印其内容。需要实现 `sys_open`，将文件描述符加入线程的 `descriptor` 中，然后通过 `sys_read` 来读取。
+
+先找到文件，把文件描述符放入进程的descriptor，然后再实现sys_open，需要为sys_openat分配系统调用号，在用户态下加入syscall，再在os/kernel/syscall.rs中加入系统调用，在fs.rs中实现具体功能，具体详见代码。
