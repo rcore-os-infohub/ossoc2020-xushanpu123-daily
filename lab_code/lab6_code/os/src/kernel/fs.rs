@@ -13,15 +13,19 @@ pub(super) fn sys_openat(
     _mode: usize,
 ) -> SyscallResult {
     assert_eq!(dir_fd, AT_FDCWD);
+    //解析path内容
     let path = check_and_clone_cstr(path).unwrap_or(String::from("SysError::EFAULT"));
     let path = path.trim();
+    //获取标志信息
     let flags = OpenFlags::from_bits_truncate(flags);
     assert!(!flags.contains(OpenFlags::CREATE));
     println!("finding file {}", path);
+    //获取文件的inode
     let inode = ROOT_INODE.find(&path).unwrap();
-    let proc = PROCESSOR.lock().current_thread().process.clone();
-    let fd = proc.inner().descriptors.len();
-    proc.inner().descriptors.push(inode);
+    //获取进程
+    let current_proc = PROCESSOR.lock().current_thread().process.clone();
+    let fd = current_proc.inner().descriptors.len();
+    current_proc.inner().descriptors.push(inode);
     SyscallResult::Proceed(fd as isize)
 }
 
@@ -94,35 +98,6 @@ bitflags! {
     }
 }
 
-/*
-impl OpenFlags {
-    fn readable(&self) -> bool {
-        let b = self.bits() & 0b11;
-        b == OpenFlags::RDONLY.bits() || b == OpenFlags::RDWR.bits()
-    }
-    fn writable(&self) -> bool {
-        let b = self.bits() & 0b11;
-        b == OpenFlags::WRONLY.bits() || b == OpenFlags::RDWR.bits()
-    }
-    fn to_options(&self) -> OpenOptions {
-        OpenOptions {
-            read: self.readable(),
-            write: self.writable(),
-            append: self.contains(OpenFlags::APPEND),
-            nonblock: false,
-        }
-    }
-}
-
-#[derive(Debug, Clone, Copy)]
-pub struct OpenOptions {
-    pub read: bool,
-    pub write: bool,
-    /// Before each write, the file offset is positioned at the end of the file.
-    pub append: bool,
-    pub nonblock: bool,
-}
-*/
 
 const AT_FDCWD: usize = -100isize as usize;
 

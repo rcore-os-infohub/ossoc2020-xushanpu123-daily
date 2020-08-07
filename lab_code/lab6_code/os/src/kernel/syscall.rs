@@ -1,14 +1,13 @@
 //! 实现各种系统调用
 
 use super::*;
-
 pub const SYS_OPENAT: usize = 56;
 pub const SYS_CLOSE: usize = 57;
 pub const SYS_READ: usize = 63;
 pub const SYS_WRITE: usize = 64;
 pub const SYS_EXIT: usize = 93;
 pub const SYS_GETTID: usize = 178;
-pub const SYS_CLONE: usize = 220;
+
 
 /// 系统调用在内核之内的返回值
 pub(super) enum SyscallResult {
@@ -24,10 +23,8 @@ pub(super) enum SyscallResult {
 pub fn syscall_handler(context: &mut Context) -> *mut Context {
     // 无论如何处理，一定会跳过当前的 ecall 指令
     context.sepc += 4;
-
     let syscall_id = context.x[17];
     let args = [context.x[10], context.x[11], context.x[12], context.x[13], context.x[14], context.x[15]];
-
     let result = match syscall_id {
         SYS_OPENAT => sys_openat(args[0], args[1] as *const u8, args[2], args[3]),
         SYS_CLOSE => sys_close(args[0]),
@@ -35,14 +32,9 @@ pub fn syscall_handler(context: &mut Context) -> *mut Context {
         SYS_WRITE => sys_write(args[0], args[1] as *mut u8, args[2]),
         SYS_EXIT => sys_exit(args[0]),
         SYS_GETTID => sys_gettid(),
-        SYS_CLONE => sys_clone(context),
-        _ => {
-            println!("unimplemented syscall: {}", syscall_id);
-            SyscallResult::Kill
-        }
+      
     };
-
-    match result {
+     match result {
         SyscallResult::Proceed(ret) => {
             // 将返回值放入 context 中
             context.x[10] = ret as usize;

@@ -9,7 +9,7 @@ const SYSCALL_READ: usize = 63;
 const SYSCALL_WRITE: usize = 64;
 const SYSCALL_EXIT: usize = 93;
 const SYSCALL_GETTID: usize = 178;
-const SYSCALL_CLONE: usize = 220;
+
 
 /// 将参数放在对应寄存器中，并执行 `ecall`
 fn syscall(id: usize, arg0: usize, arg1: usize, arg2: usize, arg3: usize, arg4: usize, arg5: usize) -> isize {
@@ -89,10 +89,7 @@ pub fn sys_gettid() -> isize {
     syscall(SYSCALL_GETTID, 0, 0, 0, 0, 0, 0)
 }
 
-/// 克隆线程
-pub fn sys_clone() -> isize {
-    syscall(SYSCALL_CLONE, 0, 0, 0, 0, 0, 0)
-}
+
 
 /// Pathname is interpreted relative to the current working directory(CWD)
 const AT_FDCWD: usize = -100isize as usize;

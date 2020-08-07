@@ -88,17 +88,16 @@ fn fault(_context: &mut Context, scause: Scause, stval: usize) -> *mut Context {
 fn supervisor_external(context: &mut Context) -> *mut Context {
     let c = console_getchar();
     // println!("{}", c);
-    match c {
-        3   => {    // Ctrl C
+      if c==3   => {    // Ctrl C
             PROCESSOR.get().kill_current_thread();
             PROCESSOR.get().prepare_next_thread();
         }
-        102 => {    // f
+       else if c==102 => {    // f
             let thread = PROCESSOR.get().current_thread().fork(context).unwrap();
             PROCESSOR.get().add_thread(thread);
         }
-        _   => {}
+        else {}
     }
-    context
+    return context;
 }
 
